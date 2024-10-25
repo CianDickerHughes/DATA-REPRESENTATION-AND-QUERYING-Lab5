@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const path = require('path');
 
 // error handling
 app.use((err, req, res, next) => {
@@ -43,7 +44,12 @@ app.get('/api/movies', (req, res) => {
             "Poster": "https://example.com/poster3.jpg"
         }
     ];
-    res.status(200).json({ movies });
+    res.status(200).json({ myMovies:movies });
+});
+
+// get index.html
+app.get('/index', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // 
