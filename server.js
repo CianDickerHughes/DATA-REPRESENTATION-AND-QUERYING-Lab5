@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // error handling
 app.use((err, req, res, next) => {
@@ -59,7 +61,14 @@ app.get('/name', (req, res) => {
     res.send(`Hello ${firstname} ${lastname}`);
 });
 
-// 
+// listen request
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+});
+
+// post request for name
+app.post('/name', (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    res.send(`Hi ${firstname} ${lastname}`);
 });
