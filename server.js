@@ -52,6 +52,13 @@ app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// get requset of name
+app.get('/name', (req, res) => {
+    const firstname = req.query.firstname;
+    const lastname = req.query.lastname;
+    res.send(`Hello ${firstname} ${lastname}`);
+});
+
 // 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
